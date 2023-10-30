@@ -1,0 +1,10 @@
+{
+    "total_records": "SELECT COUNT(*) FROM ratings;",
+    "records_by_Title_Type": "SELECT \"Title_Type\", COUNT(*) FROM ratings GROUP BY \"Title_Type\";",
+    "records_by_year_of_rating": "SELECT EXTRACT(YEAR FROM \"Date Rated\") AS rating_year, COUNT(*) FROM ratings GROUP BY rating_year ORDER BY rating_year;",
+    "records_by_year_of_release": "SELECT EXTRACT(YEAR FROM \"Release_Date\") AS release_year, COUNT(*) FROM ratings GROUP BY release_year ORDER BY release_year;",
+    "top_10_rated_titles": "SELECT \"Title\", \"IMDb_Rating\" FROM ratings ORDER BY \"IMDb_Rating\" DESC LIMIT 10;",
+    "bottom_10_rated_titles": "SELECT \"Title\", \"IMDb_Rating\" FROM ratings ORDER BY \"IMDb_Rating\" ASC LIMIT 10;",
+    "genres_average_ratings": "SELECT unnest(string_to_array(\"Genres\", ', ')) AS genre, AVG(\"IMDb_Rating\") AS average_rating FROM ratings GROUP BY genre ORDER BY average_rating DESC;",
+    "ratings_histogram": "SELECT width_bucket(\"IMDb_Rating\", 0, 10, 10) AS bucket, COUNT(*) FROM ratings GROUP BY bucket ORDER BY bucket;"
+}

@@ -4,6 +4,7 @@ from datetime import datetime
 import json
 
 def convert_to_float(value):
+
     try:
         return float(value.strip("/").strip("'"))
     except ValueError as ve:
@@ -18,7 +19,6 @@ def convert_date_format(date_str):
         return date_object.strftime('%Y/%m/%d')
     else:
         return None
-
 def convert_to_integer(value):
     if value:
         return int(value)
@@ -159,7 +159,7 @@ class PostgresCRUD:
 
 if __name__ == "__main__":
     db = PostgresCRUD(
-        dbname='movie_ratings_db',
+        dbname='postgres',
         user='postgres',
         password='Aishwarya@07',
         host='localhost',

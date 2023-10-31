@@ -60,7 +60,6 @@ class PostgresCRUD:
     def insert_data_from_csv(self, csv_file):
         with open(csv_file, encoding='latin-1') as csvfile:
             reader = csv.DictReader(csvfile)
-            #header = reader.fieldnames
 
             for row in reader:
                 genres = convert_to_string(row['Genres'])
@@ -70,7 +69,7 @@ class PostgresCRUD:
                 your_rating = convert_to_float(row['Your Rating'])
                 imdb_rating = convert_to_float(row['IMDb Rating'])
                 runtime_mins = convert_to_integer(row['Runtime (mins)'])
-
+               
                 insert_query = """
                 INSERT INTO ratings 
                 ("Const", "Your_Rating", "Date Rated", "Title", "URL", "Title_Type", "IMDb_Rating", "Runtime_mins", "Year", "Genres", "Num_Votes", "Release_Date", "Directors") 
@@ -145,7 +144,8 @@ class PostgresCRUD:
         
         with open(filename, 'w') as json_file:
             json.dump(queries, json_file, indent=4)
-    def execute_queries_from_json(self, filename):
+            
+    def execute_queries_from_json(self,filename):
         with open(filename, 'r') as json_file:
             queries = json.load(json_file)
         results = {}
